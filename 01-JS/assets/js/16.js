@@ -35,53 +35,8 @@ Voici la liste de nos Membres :
 NB : Devra bien entendu s'afficher le membre qui vient de s'inscrire.
 -- */
 
-
-
-
-var membres = [
-    {'pseudo':'Hugo','age':26,'email':'wf3@hl-media.fr','mdp':'wf3'},
-    {'pseudo':'Rodrigue','age':56,'email':'rodrigue@hl-media.fr','mdp':'roro'},
-    {'pseudo':'James','age':78,'email':'james@hl-media.fr','mdp':'james8862'},
-    {'pseudo':'Emilio','age':18,'email':'milio@hl-media.fr','mdp':'milioDu62'}
-  ];  
-
-
-  function verifPseudo(params) {
-    for(let i = 0 ; i < membres.length ; i++) {
-        if (membres.pseudo === pseudo.value ){
-            var erreurPseudo = document.getElementsByClassName('pseudoError') ;
-            
-
-      console.log(pseudo.value);      
-      console.log(erreurpseudo);      
-
-  } else { }
-
-
-  pseudo.addEventListener("change",verifPseudo);
-  
-  var contenu = document.getElementsByClassName('contenu') ;
-
-//
-// -- 1. Demander à l'utilisateur son email/mot de passe
-var email   = prompt('Bonjour, Quel est votre email ?','<Saisissez votre email>');
-var mdp     = prompt('votre mot de passe ?','<Saisissez votre mot de passe>');
-
-// -- 2. Parcourir l'ensemble des données de mon tableau
-// for(let user of BaseDeDonnees) {...}
-for(let i = 0 ; i < BaseDeDonnees.length ; i++) {
-
-    // -- 2a. Vérifier l'identification de l'utilisateur
-    if(email === BaseDeDonnees[i].email && mdp === BaseDeDonnees[i].mdp) {
-        
-        // -- J'ai trouvé une correspondance
-        isEmailInArray = true;
-        w('Bonjour ' + BaseDeDonnees[i].prenom + ' !');
-
-        // -- Je stop la boucle for, j'ai trouvé ce que je cherche.
-        break;
-    }
-
+function l(e) {
+    console.log(e)
 }
 
 
@@ -90,5 +45,132 @@ for(let i = 0 ; i < BaseDeDonnees.length ; i++) {
 
 
 
+var membres = [
+    { 'pseudo': 'Hugo', 'age': 26, 'email': 'wf3@hl-media.fr', 'mdp': 'wf3' },
+    { 'pseudo': 'Rodrigue', 'age': 56, 'email': 'rodrigue@hl-media.fr', 'mdp': 'roro' },
+    { 'pseudo': 'James', 'age': 78, 'email': 'james@hl-media.fr', 'mdp': 'james8862' },
+    { 'pseudo': 'Emilio', 'age': 18, 'email': 'milio@hl-media.fr', 'mdp': 'milioDu62' }
+];
+
+l(membres);
+var erreurPseudo = document.getElementsByClassName('pseudoError')[0];
+var pseudo = document.getElementById(pseudo);
+var submit = document.getElementById(submit);
+
+l(pseudo.value);
+ l(erreurPseudo);
+ l(submit);
+// pseudoError
+
+ function verifPseudo() {
+    for (let i = 0; i < membres.length; i++) {
+        if (membres.pseudo[i] === pseudo.value) {
+
+            // j affiche pseudoerror
+            erreurPseudo
+            w(erreurPseudo.value);
+            //submit
+            submit.disabled = true;
+
+            console.log(pseudo.value);
+            console.log(erreurPseudo);
+            break;
+        }
+        else {
+            submit.disabled = false;
+            l(erreurPseudo);
+        }
+    }
+l("sortie de boucle");
+}
+
+pseudo.addEventListener("input", verifPseudo); 
 
 
+
+/* function changerLaCouleurEnRouge() {
+    p.style.color = "red";
+}
+
+p.addEventListener('click', changerLaCouleurEnRouge);   */
+
+
+
+// correction prof
+
+
+
+
+<script>
+        var membres = [
+            { 'pseudo': 'Hugo', 'age': 26, 'email': 'wf3@hl-media.fr', 'mdp': 'wf3' },
+            { 'pseudo': 'Rodrigue', 'age': 56, 'email': 'rodrigue@hl-media.fr', 'mdp': 'roro' },
+            { 'pseudo': 'James', 'age': 78, 'email': 'james@hl-media.fr', 'mdp': 'james8862' },
+            { 'pseudo': 'Emilio', 'age': 18, 'email': 'milio@hl-media.fr', 'mdp': 'milioDu62' }
+        ];
+
+        // -- Récupération des éléments
+        var pseudo          = document.getElementById('pseudo');
+        var age             = document.getElementById('age');
+        var email           = document.getElementById('email');
+        var mdp             = document.getElementById('mdp');
+        var submit          = document.getElementById('submit');
+        var bienvenue       = document.getElementById('Bienvenue');
+        var inscriptionform = document.getElementById('InscriptionForm');
+
+        var pseudoerror = document.getElementsByClassName('pseudoError')[0];
+        var ageerror    = document.getElementsByClassName('ageError')[0];
+
+        // -- ETAPE 1 & 3
+
+        /**
+         * Lors de la saisie de notre utilisateur dans
+         * le champ "pseudo", notre fonction anonyme
+         * sera déclenchée.
+         */
+        pseudo.addEventListener('input', function () {
+
+            // console.log(pseudo.value);
+
+            for (let i = 0; i < membres.length; i++) {
+                
+                // console.log(membres[i]);
+
+                /**
+                 * Si la saisie d'un pseudo en cours par mon
+                 * utilisateur correspond à un pseudo dans
+                 * mon tableau JS de membres ; alors ma 
+                 * condition s'applique.
+                 * 
+                 * NOTA BENE : La condition vérifie, la saisie
+                 * de mon utilisateur pour tous les membres
+                 * du tableau !
+                 */
+
+                if(pseudo.value === membres[i].pseudo) {
+
+                    /**
+                     * J'ai trouvé une correspondance,
+                     * j'affiche pseudoError (alerte).
+                     */
+
+                    pseudoerror.style.display = "block";
+                    submit.disabled = true;
+                    bienvenue.textContent = 'Bienvenue !';
+
+                    // -- On arrête de parcourir le tableau.
+                    break;
+
+                } else {
+
+                    pseudoerror.style.display = "none";
+                    submit.disabled = false;
+                    bienvenue.textContent = 'Bienvenue ' + pseudo.value + ' !';
+
+                }
+
+            }
+
+        });
+
+    </script>
