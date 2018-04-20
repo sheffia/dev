@@ -11,7 +11,7 @@ Je vais mettre l ensemble de mon code dans une fonction et cette fonction
 
 jQuery(document).ready(function () {
 });
-// -- ici le DPOM est entierement charge je peux proceder à mon codeJS 
+// -- ici le POM est entierement charge je peux proceder à mon codeJS 
 //     $ à la place de jquery  
 $(document).ready(function () {
 });
