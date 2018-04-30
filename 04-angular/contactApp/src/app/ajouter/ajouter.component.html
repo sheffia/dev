@@ -1,0 +1,67 @@
+<form #form="ngForm"
+      *ngIf="active"
+      (ngsubmit)="submitContact()">
+  <!--  Grace a l identifiant #form plus haut , je peux connaitre l etat de
+  validation de mon formulaire -->
+  <h5 class="text-center m-4">
+    Ajouter un contact
+  </h5>
+  <pre>
+    {{ form.valid}} {{ nouveauContact | json}}
+  </pre>
+  <!-- nom complet -->
+  <div class="form-group">
+    <input type="text" required
+           class="form-control"
+    placeholder="Saisissez votre nom Complet..."
+    name="fullname"
+    #fullname="ngmModel"
+           [(ngModel)]="nouveauContact.name"
+           [class.is-invalid]="fullname.touched && fullname.invalid"
+           [class.is-valid]="fullname.valid"
+    >
+    <div class="valid-feedback">
+      Correct
+    </div>
+  </div>
+  <!-- userName -->
+  <div class="form-group">
+    <input type="text" required
+           class="form-control"
+           placeholder="Saisissez votre userName."
+           name="username"
+           #username="ngmModel"
+           [(ngModel)]="nouveauContact.username"
+           [class.is-invalid]="fullusername.touched && fullusername.invalid"
+           [class.is-valid]="fullusername.valid"
+    >
+  </div>
+<!-- email -->
+  <div class="form-group">
+    <!-- Email -->
+    <div class="form-group">
+      <input type="email" required
+             class="form-control"
+             placeholder="Saisissez votre email..."
+             name="email" #email="ngModel"
+             [(ngModel)]="nouveauContact.email"
+             [class.is-invalid]="email.touched && email.invalid"
+             [class.is-valid]="email.valid"
+             pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,5}$">
+      <div class="invalid-feedback">
+        Vous devez saisir votre email.
+      </div>
+      <div class="valid-feedback">
+        Correct
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <button class="btn btn-block btn-primary"
+  [disabled]="form.inavalid" ]>
+    Ajouter contact
+  </button>
+</form>

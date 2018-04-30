@@ -1,54 +1,69 @@
-/** pour declarer une classe comme composant de notre application
- * on importe component via @angular/core
+/**
+ * Pour déclarer une classe comme
+ * composant de notre application,
+ * on importe "Component" via
+ * @angular/core
  */
-
-
 import { Component } from '@angular/core';
-class Contact {
-  id: number;
-  name: string;
-  username: string;
-  email?: string;
-  address?: object;
-  phone?: number;
-  website?: string;
-}
+import { Contact } from './models/contact';
 
 
-
-//  @component est un decorateur il permet de definir trois parametres essentiels
-//   a notre application
+/**
+ * @Component est ce qu'on appelle un
+ * décorateur. Il va nous permettre
+ * de définir 3 paramètres essentiels
+ * à notre application...
+ */
 @Component({
-  /** le selector determine la maniere dont le composant sera affiche dans votre html <app-root></app-root>
-   vous devez avoir obligatoirement avoir la balise d ouverture et de fermeture */
-
+  /**
+   * Le sélecteur (selector) détermine la
+   * manière dont le composant sera affiché
+   * dans votre HTML : <app-root></app-root>.
+   * Vous devez OBLIGATOIREMENT avoir la balise
+   * d'ouverture et de fermeture.
+   */
   selector: 'app-root',
-  /** template URL ou template est la partie visible du composant.C est ce qui s affiche a l ecran lorsque
-*  le composant est utilisé
-* */
-    templateUrl: './app.component.html',
-  /**  declaration des styles avec styleUrl  ou style*/
+  /**
+   * "templateUrl" ou "template" est la
+   * partie visible du composant. C'est
+   * ce qui s'affiche à l'écran lorsque
+   * le composant est utilisé.
+   */
+  templateUrl: './app.component.html',
+  /**
+   * La déclaration des styles avec
+   * "styleUrls" ou "styles[]"
+   */
   styleUrls: ['./app.component.css']
-  /** template : */
+  /*template: `
+  <h1>Bienvenue aux Mureaux...</h1>
+  <h3>Notre ville a du Talent !</h3>
+  `,
+  styles: [`
+    h1 { color: blue; }
+  `],*/
 })
-/** la classe contient les donnees du composant mais aussi son comportement dans notre contexte mvvm
-* notre classe correspond au view model */
-export class AppComponent {
-  // declaration d une variable type
+/**
+ * La classe contient les données du
+ * composant, mais aussi son comportement.
+ * Dans notre contexte MVVM, notre classe
+ * correspond au ViewModel.
+ */
+export class AppComponent implements OnInit{
+  // -- Déclaration d'une Variable Titre
   title = 'Gestion de mes Contacts';
+
   // -- Contact choisi par mon utilisateur
   contactActif: Contact;
-  // -- declaration d un objet contact
 
-
+  // -- Déclaration d'un Objet Contact
   unContact: Contact = {
-    id: 1,
-    name: 'Cheffia BENALLAL',
-    username: 'cheffiabenallal',
-    email: 'cheffia.benallal@gmail.com'
+    id        :   1,
+    name      : 'Hugo LIEGEARD',
+    username  : 'hugoliegeard',
+    email     : 'wf3@hl-media.fr'
   };
-
-  // -- declaration tableau de contacts
+  // -- Tableau de Contacts
   mesContacts: Contact[] = [
     {
       id        :   1,
@@ -75,10 +90,42 @@ export class AppComponent {
       email     : 'cheffia.b@hl-media.fr'
     }
   ];
+
+  /**
+   * Ma fonction choisirContact, prend un contact
+   * en paramètre et le transmet à la variable
+   * contactActif.
+   * @param contactCliqueParMonUtilisateur
+   */
   choisirContact(contactCliqueParMonUtilisateur) {
     this.contactActif = contactCliqueParMonUtilisateur;
     console.log(this.contactActif);
   }
+  ajouterContactDansLListe(event: any){
+    console.log(event);
 
+  /** -- recuperation du contact via l evenement */
+    const leContact: Contact =  event.leContact;
+
+  }
+
+  /** -- Attribution d un ID au contact -- */
+  leContact.
+  leContact.id = Date.now();
+
+ console.log(leContact);
+    // ajout du contact dans le tableau
+
+    this.mesContacts.push(leContact);
+
+}
+
+/** La methode ngOnInit est appellé automatiquement pa angular à l initialiation
+ *
+ */
+ *
+  */
+*/
+ngOnInit() : void{
 
 }

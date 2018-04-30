@@ -4,11 +4,17 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {FormsModule} from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import
+import { AjouterComponent } from './ajouter/ajouter.component';
+import { ProfilComponent } from './profil/profil.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AjouterComponent,
+    ProfilComponent
   ],
   imports: [
     BrowserModule,
